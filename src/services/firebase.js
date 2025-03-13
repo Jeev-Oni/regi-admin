@@ -183,8 +183,82 @@ export const getSessionPlayers = async (sessionId, teamName) => {
 		throw error;
 	}
 };
-
 // Utility Functions
 export const generateUniqueId = () => {
 	return push(ref(database)).key;
 };
+
+// Add these functions to your firebase.js file
+
+// Reserve a slot for a player
+export const reserveSlot = async (sessionId, teamName, slotNumber, playerData) => {
+  try {
+    const slotRef = ref(
+      database,
+      `sessions/${sessionId}/teams/${teamName}/slots/${slotNumber}`
+    );
+    
+    await update(slotRef, {
+      reserved: true,
+      reservedAt: new Date().toISOString(),
+      userId: playerData.userId,
+      userName: playerData.userName
+    });
+    
+    return true;
+  } catch (error) {
+    console.error("Error reserving slot:", error);
+    throw error;
+  }
+};
+
+// Release a slot (remove player)
+export const releaseSlot = async (sessionId, teamName, slotNumber) => {
+  try {
+    const slotRef = ref(
+      database,
+      `sessions/${sessionId}/teams/${teamName}/slots/${slotNumber}`
+    );
+    
+    await update(slotRef, {
+      reserved: false,
+      reservedAt: null,
+      userId: null,
+      userName: null
+    });
+    
+    return true;
+  } catch (error) {
+    console.error("Error releasing slot:", error);
+    throw error;
+  }
+};
+
+// Initialize slots for a team (optional function if you need to create slots)
+export const initializeTeamSlots = async (sessionId, teamName, slotCount = 9) => {
+  try {
+    const teamRef = ref(database, `sessions/${sessionId}/teams/${teamName}`);
+    
+    // First create the slotCount entry
+    await set(ref(database, `sessions/${sessionId}/teams/${teamName}/slotCount`), slotCount);
+    
+    // Then create empty slots
+    const slots = {};
+    for (let i = 0; i < slotCount; i++) {
+      slots[i] = {
+        reserved: false,
+        reservedAt: null,
+        userId: null,
+        userName: null
+      };
+    }
+    
+    await set(ref(database, `sessions/${sessionId}/teams/${teamName}/slots`), slots);
+    
+    return true;
+  } catch (error) {
+    console.error("Error initializing team slots:", error);
+    throw error;
+  }
+};
+

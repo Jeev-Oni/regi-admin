@@ -7,7 +7,7 @@ const RecordsManagement = () => {
 	const [loading, setLoading] = useState(true);
 	const [error, setError] = useState("");
 
-	// State for edit modal
+	
 	const [showEditModal, setShowEditModal] = useState(false);
 	const [currentSession, setCurrentSession] = useState(null);
 	const [editFormData, setEditFormData] = useState({
@@ -53,7 +53,7 @@ const RecordsManagement = () => {
 				updatedAt: new Date().toISOString(),
 			});
 
-			// Update local state
+			
 			setSessions(
 				sessions.map((session) =>
 					session.id === sessionId
@@ -81,7 +81,7 @@ const RecordsManagement = () => {
 				updatedAt: new Date().toISOString(),
 			});
 
-			// Update local state
+			
 			setSessions(
 				sessions.map((session) =>
 					session.id === sessionId
@@ -111,7 +111,7 @@ const RecordsManagement = () => {
 				const sessionRef = ref(database, `sessions/${sessionId}`);
 				await remove(sessionRef);
 
-				// Update local state
+				
 				setSessions(sessions.filter((session) => session.id !== sessionId));
 
 				alert("Session deleted successfully");
@@ -122,7 +122,7 @@ const RecordsManagement = () => {
 		}
 	};
 
-	// Function to open edit modal
+	
 	const openEditModal = (session) => {
 		setCurrentSession(session);
 		setEditFormData({
@@ -133,7 +133,7 @@ const RecordsManagement = () => {
 		setShowEditModal(true);
 	};
 
-	// Function to handle form input changes
+	
 	const handleInputChange = (e) => {
 		const { name, value } = e.target;
 		setEditFormData({
@@ -142,7 +142,7 @@ const RecordsManagement = () => {
 		});
 	};
 
-	// Function to save session edits
+	
 	const saveSessionEdits = async () => {
 		if (!currentSession) return;
 
@@ -153,7 +153,7 @@ const RecordsManagement = () => {
 				updatedAt: new Date().toISOString(),
 			});
 
-			// Update local state
+			
 			setSessions(
 				sessions.map((session) =>
 					session.id === currentSession.id

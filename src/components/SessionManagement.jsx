@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { createSession } from "../services/firebase"; // Make sure this is correct
+import { createSession } from "../services/firebase"; 
 import { serverTimestamp } from "firebase/database";
 
 const SessionManagement = () => {
@@ -17,29 +17,29 @@ const SessionManagement = () => {
 
 	const handleCreateSession = async () => {
 		try {
-			// Build "teams" object, storing both slotCount and slots array
+			
 			const transformedTeams = {};
 			Object.keys(sessionData.teams).forEach((team) => {
 				const count = sessionData.teams[team].slotCount;
 				transformedTeams[team] = {
-					slotCount: count, // Keep the slotCount in Firebase
-					slots: Array(count).fill(null), // Initialize the slots array
+					slotCount: count, 
+					slots: Array(count).fill(null), 
 				};
 			});
 
-			// Prepare final session object
+			
 			const sessionToCreate = {
 				...sessionData,
 				teams: transformedTeams,
 				createdAt: serverTimestamp(),
 			};
 
-			// Call your Firebase function that creates the session
+			
 			await createSession(sessionToCreate);
 
 			alert("Session created successfully");
 
-			// Optionally reset the form
+			
 			setSessionData({
 				event: "",
 				date: "",

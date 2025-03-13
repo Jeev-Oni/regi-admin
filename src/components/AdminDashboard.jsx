@@ -1,4 +1,3 @@
-// AdminDashboard.jsx - Updated with logo
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { logoutUser } from "../services/firebase";
@@ -33,56 +32,71 @@ const AdminDashboard = () => {
 	};
 
 	return (
-		<div className="min-h-screen bg-gray-100 flex">
-			{/* Sidebar */}
-			<div className="w-64 bg-gray-800 text-white p-6">
-				{/* Logo section */}
-				<div className="flex justify-center mb-4">
-					<div className="text-center">
-						<div className="bg-white p-2 rounded-full w-16 h-16 mx-auto flex items-center justify-center">
-							{/* Placeholder logo - replace with your actual logo */}
-							<span className="text-gray-800 font-bold text-xl">LOGO</span>
+		<div className="min-h-screen flex flex-col bg-gray-50 text-gray-800">
+			{/* Header banner - Less vibrant Football Lipa style */}
+			<div className="w-full bg-red-500 text-white">
+				<div className="container mx-auto py-3 px-4">
+					<div className="flex items-center justify-between">
+						<div className="flex items-center">
+							<img
+								src="/path-to-logo.png"
+								alt="Logo"
+								className="h-10 w-10 mr-2"
+							/>
+							<span className="text-3xl font-bold">Football Lipa</span>
 						</div>
-						<p className="mt-2 font-semibold">Admin System</p>
+						<button
+							onClick={handleLogout}
+							className="text-sm bg-gray-700 px-3 py-1 rounded hover:bg-gray-600">
+							Sign Out
+						</button>
 					</div>
 				</div>
-
-				{/* Divider */}
-				<div className="border-b border-gray-600 my-4"></div>
-
-				<h2 className="text-2xl font-bold mb-8">Admin Panel</h2>
-				<nav className="space-y-4">
-					<button
-						onClick={() => setActiveTab("sessions")}
-						className={`w-full text-left p-2 rounded ${
-							activeTab === "sessions" ? "bg-blue-600" : "hover:bg-gray-700"
-						}`}>
-						Sessions
-					</button>
-					<button
-						onClick={() => setActiveTab("players")}
-						className={`w-full text-left p-2 rounded ${
-							activeTab === "players" ? "bg-blue-600" : "hover:bg-gray-700"
-						}`}>
-						Players
-					</button>
-					<button
-						onClick={() => setActiveTab("records")}
-						className={`w-full text-left p-2 rounded ${
-							activeTab === "records" ? "bg-blue-600" : "hover:bg-gray-700"
-						}`}>
-						Records
-					</button>
-					<button
-						onClick={handleLogout}
-						className="w-full text-left p-2 rounded hover:bg-red-600">
-						Logout
-					</button>
-				</nav>
 			</div>
 
-			{/* Main Content */}
-			<div className="flex-1 p-10">{renderContent()}</div>
+			{/* Subtle Navy Separator */}
+			<div className="h-1 bg-gray-700 w-full"></div>
+
+			<div className="flex flex-1">
+				{/* Sidebar */}
+				<div className="w-64 bg-gray-100 border-r border-gray-300 p-4">
+					<h3 className="text-lg font-semibold mb-4 text-gray-700">
+						Admin Dashboard
+					</h3>
+					<nav>
+						{[
+							{ name: "Sessions Management", key: "sessions", icon: "📝" },
+							{ name: "Player Management", key: "players", icon: "👥" },
+							{ name: "Records Management", key: "records", icon: "📊" },
+						].map(({ name, key, icon }) => (
+							<button
+								key={key}
+								onClick={() => setActiveTab(key)}
+								className={`w-full text-left px-3 py-2 rounded-md flex items-center mb-2 transition ${
+									activeTab === key
+										? "bg-red-500 text-white"
+										: "hover:bg-gray-200 text-gray-800"
+								}`}>
+								<span className="mr-2">{icon}</span>
+								{name}
+							</button>
+						))}
+					</nav>
+				</div>
+
+				{/* Main Content */}
+				<div className="flex-1 p-6">
+					<div className="bg-white p-4 shadow-md rounded-md mb-6">
+						<h2 className="text-xl font-bold text-gray-700">
+							Welcome to Football Lipa Admin
+						</h2>
+						<p className="text-sm text-gray-600">
+							Manage your sessions, players, and records.
+						</p>
+					</div>
+					{renderContent()}
+				</div>
+			</div>
 		</div>
 	);
 };
