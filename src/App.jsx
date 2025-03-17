@@ -9,17 +9,17 @@ function App() {
 	return (
 		<BrowserRouter>
 			<Routes>
-				<Route path="/admin/login" element={<AdminLogin />} />
-				<Route path="/admin/register" element={<AdminRegistration />} />
+				<Route path="/admin/:login" element={<AdminLogin />} />
+				<Route path="/admin/:register" element={<AdminRegistration />} />
 				<Route
-					path="/admin/dashboard"
+					path="/admin/:dashboard"
 					element={
 						<PrivateRoute>
 							<AdminDashboard />
 						</PrivateRoute>
 					}
 				/>
-				<Route path="*" element={<Navigate to="/admin/login" />} />
+				<Route path="*" element={<Navigate to="/admin/:login" />} />
 			</Routes>
 		</BrowserRouter>
 	);
