@@ -25,7 +25,7 @@ const AdminLogin = () => {
 		<div
 			className="min-h-screen flex items-center justify-center"
 			style={{
-				background: "radial-gradient(circle, #5999ab 0%, #1b2931 100%)",
+				background: "radial-gradient(circle, #ff5c5c 0%, #ad0707 100%)",
 			}}>
 			<div className="bg-white p-8 rounded-lg shadow-md w-96">
 				<h2 className="text-2xl font-bold text-center mb-6 text-gray-800">
@@ -55,7 +55,7 @@ const AdminLogin = () => {
 					/>
 					<button
 						type="submit"
-						className="w-full bg-blue-600 text-white py-2 rounded hover:bg-blue-700">
+						className="w-full bg-red-600 text-white py-2 rounded hover:bg-blue-700">
 						Log In
 					</button>
 				</form>

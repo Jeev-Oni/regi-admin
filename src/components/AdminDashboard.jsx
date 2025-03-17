@@ -33,8 +33,7 @@ const AdminDashboard = () => {
 
 	return (
 		<div className="min-h-screen flex flex-col bg-gray-50 text-gray-800">
-			{/* Header banner with upward gradient */}
-			<div className="w-full bg-gradient-to-t from-gray-700 to-red-600 text-white">
+			<div className="w-full bg-gradient-to-t from-red-300 to-red-600 text-white">
 				<div className="container mx-auto py-3 px-4">
 					<div className="flex items-center justify-between">
 						<div className="flex items-center">
@@ -51,19 +50,19 @@ const AdminDashboard = () => {
 			</div>
 
 			{/* Subtle Navy Separator */}
-			<div className="h-1 bg-gray-700 w-full"></div>
+			<div className="h-1 bg-black w-full"></div>
 
 			<div className="flex flex-1">
-				{/* Sidebar */}
-				<div className="w-64 bg-gray-100 border-r border-gray-300 p-4">
+				{/* Sidebar with gradient to the left */}
+				<div className="w-64 bg-gradient-to-l from-gray-400 to-gray-100 border-r border-black-300 p-4">
 					<h3 className="text-lg font-semibold mb-4 text-gray-700">
 						Admin Dashboard
 					</h3>
 					<nav>
 						{[
-							{ name: "Sessions Management", key: "sessions", icon: "📝" },
-							{ name: "Player Management", key: "players", icon: "👥" },
-							{ name: "Records Management", key: "records", icon: "📊" },
+							{ name: "Sessions Management", key: "sessions", icon: "☊" },
+							{ name: "Player Management", key: "players", icon: "⚉" },
+							{ name: "Records Management", key: "records", icon: "☷" },
 						].map(({ name, key, icon }) => (
 							<button
 								key={key}
