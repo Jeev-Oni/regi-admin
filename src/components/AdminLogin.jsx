@@ -22,9 +22,15 @@ const AdminLogin = () => {
 	};
 
 	return (
-		<div className="min-h-screen flex items-center justify-center bg-gray-100">
+		<div
+			className="min-h-screen flex items-center justify-center"
+			style={{
+				background: "radial-gradient(circle, #5999ab 0%, #1b2931 100%)",
+			}}>
 			<div className="bg-white p-8 rounded-lg shadow-md w-96">
-				<h2 className="text-2xl font-bold text-center mb-6">Admin Login</h2>
+				<h2 className="text-2xl font-bold text-center mb-6 text-gray-800">
+					Admin Login
+				</h2>
 				{error && (
 					<div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded mb-4">
 						{error}

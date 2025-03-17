@@ -33,16 +33,12 @@ const AdminDashboard = () => {
 
 	return (
 		<div className="min-h-screen flex flex-col bg-gray-50 text-gray-800">
-			{/* Header banner - Less vibrant Football Lipa style */}
-			<div className="w-full bg-red-500 text-white">
+			{/* Header banner with upward gradient */}
+			<div className="w-full bg-gradient-to-t from-gray-700 to-red-600 text-white">
 				<div className="container mx-auto py-3 px-4">
 					<div className="flex items-center justify-between">
 						<div className="flex items-center">
-							<img
-								src="/path-to-logo.png"
-								alt="Logo"
-								className="h-10 w-10 mr-2"
-							/>
+							<img src="/Lipa.png" alt="Logo" className="h-10 w-10 mr-2" />
 							<span className="text-3xl font-bold">Football Lipa</span>
 						</div>
 						<button
